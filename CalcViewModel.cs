@@ -80,7 +80,7 @@ namespace PriceCalc
         {
             if (CurrentWeekDay < 4 || NumOfGuests[GuestsIndex] < 4) return 99 + (AddGuests * 20);
             double price = 28;
-            if ((CurrentRoomIndex == 0 && NumOfGuests[GuestsIndex] > 4) || NumOfGuests[GuestsIndex] > 6)
+            if ((CurrentRoomIndex == 0 && NumOfGuests[GuestsIndex] == 6) || NumOfGuests[GuestsIndex] == 8)
             {
                 price *= 0.8;
             }
