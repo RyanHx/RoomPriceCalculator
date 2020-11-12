@@ -42,7 +42,11 @@
         <ComboBox ItemsSource="{Binding WeekDays}" SelectedIndex="{Binding CurrentWeekDay}" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding Rooms}" SelectedIndex="{Binding CurrentRoomIndex}" Grid.Column="1" Grid.Row="1"/>
         <ComboBox ItemsSource="{Binding NumOfGuests}" SelectedIndex="{Binding GuestsIndex}" Grid.Column="1" Grid.Row="2"/>
-        <xctk:IntegerUpDown Value="{Binding AddGuests}" Increment="1" Minimum="0" Grid.Column="1" Grid.Row="3" AllowTextInput="False"/>
+        <xctk:IntegerUpDown Value="{Binding AddGuests}" 
+                            Increment="1" Minimum="0" 
+                            Grid.Column="1" Grid.Row="3" 
+                            AllowTextInput="False"
+                            AllowSpin="{Binding AllowAddGuests}"/>
         <TextBlock Text="{Binding Price}" TextAlignment="Right" Margin="0 0 6 0"  Grid.Column="1" Grid.Row="4" />
         <TextBlock Text="{Binding TaxPrice}" TextAlignment="Right" Margin="0 0 6 0" Grid.Column="1" Grid.Row="5"/>
     </Grid>

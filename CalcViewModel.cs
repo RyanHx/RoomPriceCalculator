@@ -27,7 +27,7 @@ namespace PriceCalc
             get { return _currentRoomIndex; }
             set
             {
-                if(value == 0 && GuestsIndex > 5)
+                if (value == 0 && GuestsIndex > 5)
                 {
                     GuestsIndex = 5;
                 }
@@ -44,9 +44,31 @@ namespace PriceCalc
                 return _numOfGuests;
             }
         }
-        public int GuestsIndex { get; set; }
+        private int _guestsIndex = 0;
+        public int GuestsIndex
+        {
+            get
+            {
+                return _guestsIndex;
+            }
+            set
+            {
+                if(value + 1 < NumOfGuests.Count)
+                {
+                    AddGuests = 0;
+                }
+                _guestsIndex = value;
+            }
+        }
 
         public int AddGuests { get; set; }
+        public bool AllowAddGuests
+        {
+            get
+            {
+                return GuestsIndex + 1 == NumOfGuests.Count;
+            }
+        }
 
         private double price => CalcPrice();
         public string Price => $"${Math.Truncate(price * 100) / 100}";
@@ -56,21 +78,11 @@ namespace PriceCalc
 
         private double CalcPrice()
         {
-            if(CurrentWeekDay < 4 || NumOfGuests[GuestsIndex] < 4) return 99 + (AddGuests * 20);
+            if (CurrentWeekDay < 4 || NumOfGuests[GuestsIndex] < 4) return 99 + (AddGuests * 20);
             double price = 28;
-            if (CurrentRoomIndex == 0)
+            if ((CurrentRoomIndex == 0 && NumOfGuests[GuestsIndex] > 4) || NumOfGuests[GuestsIndex] > 6)
             {
-                if (NumOfGuests[GuestsIndex] > 4)
-                {
-                    price *= 0.8;
-                }
-            }
-            else
-            {
-                if (NumOfGuests[GuestsIndex] > 6)
-                {
-                    price *= 0.8;
-                }
+                price *= 0.8;
             }
             return price * (NumOfGuests[GuestsIndex] + AddGuests);
         }
