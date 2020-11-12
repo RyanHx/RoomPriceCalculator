@@ -56,8 +56,7 @@ namespace PriceCalc
 
         private double CalcPrice()
         {
-            if(CurrentWeekDay < 4) return 99 + (AddGuests * 20);
-            if (NumOfGuests[GuestsIndex] < 4) return 99 + (AddGuests * 20);
+            if(CurrentWeekDay < 4 || NumOfGuests[GuestsIndex] < 4) return 99 + (AddGuests * 20);
             double price = 28;
             if (CurrentRoomIndex == 0)
             {
